@@ -11,7 +11,7 @@
     "dev": "webpack-dev-server -d",
     "serve": "firebase serve --only functions,hosting",
     "deploy": "git push heroku master",
-    "heroku-postbuild": "npm run builds"
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC",
