@@ -6,8 +6,8 @@ module.exports = Object.assign({}, base, {
   output: {
     libraryTarget: "commonjs2",
     libraryExport: "default",
-    path: path.resolve(__dirname, "functions"),
-    filename: "bundle.js"
+    path: path.resolve(__dirname, "build"),
+    filename: "server.bundle.js"
   },
   devtool: false
 })

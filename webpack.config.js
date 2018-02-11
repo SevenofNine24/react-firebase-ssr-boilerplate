@@ -11,10 +11,10 @@ let plugins = process.env.NODE_ENV === "production" ? [
 ]
 module.exports = {
   devtool: "source-map",
-  entry: "./index.js",
+  entry: "./client.js",
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "bundle.js",
+    filename: "client.bundle.js",
     publicPath: "/assets/"
   },
   module: {
