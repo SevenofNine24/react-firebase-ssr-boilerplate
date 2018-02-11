@@ -4,7 +4,7 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node build/server.js",
     "build": "npm run buildc && npm run builds",
     "buildc": "NODE_ENV=production webpack",
     "builds": "NODE_ENV=production webpack --config webpack.config.server.js",
