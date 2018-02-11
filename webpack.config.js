@@ -1,6 +1,7 @@
 const path = require("path")
 const webpack = require("webpack")
 const plugins = require("./plugins.config.js")
+const loadable = require("react-loadable/webpack")
 
 module.exports = {
   devtool: "source-map",
@@ -24,6 +25,14 @@ module.exports = {
     ]
   },
   plugins: plugins.concat([
+    new loadable.ReactLoadablePlugin({
+      filename: './build/react-loadable.json',
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "manifest",
+      filename: "manifest.js",
+      minChunks: Infinity
+    })
   ]),
   devServer: {
     contentBase: path.resolve(__dirname, "public"),

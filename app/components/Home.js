@@ -7,7 +7,12 @@ const LoadableTest = Loadable({
     return <div>loading</div>
   }
 })
-
+const OtherLoadable = Loadable({
+  loader: () => import('./Test.js'),
+  loading() {
+    return <div>also loading</div>
+  }
+})
 class Home extends Component {
 
   render() {
@@ -15,6 +20,7 @@ class Home extends Component {
       <div>
         szevasz
         <LoadableTest />
+        <OtherLoadable />
       </div>
     );
   }

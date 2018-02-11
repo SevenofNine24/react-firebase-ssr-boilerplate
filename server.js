@@ -1,8 +1,10 @@
 import compression from 'compression'
 import ServerApp from './app/ServerApp'
 import React from 'react'
-import Loadable from 'react-loadable'
+import Loadable, { Capture } from 'react-loadable'
 import { renderToString } from 'react-dom/server'
+import { getBundles } from 'react-loadable/webpack'
+import stats from './build/react-loadable.json';
 import template from './app/template'
 const express = require('express')
 const path = require('path')
@@ -18,8 +20,12 @@ app.use(compression())
     let modules = []
     let context = {}
     const body = renderToString(
-      <ServerApp />
+      <Capture report={m => { modules.push(m) }}>
+        <ServerApp />
+      </Capture>
     )
+
+    let bundles = getBundles(stats, modules)
 
     if (context.url) {
       res.redirect(context.url)
@@ -28,7 +34,7 @@ app.use(compression())
         .send(template({
           body,
           initialState: JSON.stringify({}),
-          modules
+          modules: bundles
         }))
     }
   })
