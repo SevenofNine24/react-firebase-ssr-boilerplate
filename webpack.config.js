@@ -1,21 +1,14 @@
 const path = require("path")
 const webpack = require("webpack")
-let plugins = process.env.NODE_ENV === "production" ? [
-  new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify('production')
-  }),
-  new webpack.optimize.UglifyJsPlugin(),
-  new webpack.optimize.ModuleConcatenationPlugin()
-] : [
-  new webpack.HotModuleReplacementPlugin()
-]
+const plugins = require("./plugins.config.js")
+const loadable = require("react-loadable/webpack")
+
 module.exports = {
   devtool: "source-map",
   entry: "./client.js",
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "client.bundle.js",
-    publicPath: "/assets/"
+    filename: "[name].client.js"
   },
   resolve: {
     alias: {
@@ -31,9 +24,18 @@ module.exports = {
       }
     ]
   },
-  plugins: plugins,
+  plugins: plugins.concat([
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+      minChunks: Infinity
+    }),
+    new loadable.ReactLoadablePlugin({
+      filename: path.resolve(__dirname, "build", "react-loadable.json")
+    })
+  ]),
   devServer: {
     contentBase: path.resolve(__dirname, "public"),
-    historyApiFallback: true
+    historyApiFallback: true,
+    port: 5000
   }
 }

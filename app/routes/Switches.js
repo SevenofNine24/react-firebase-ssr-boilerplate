@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
+import routes from './index'
 
 class Switches extends Component {
   render() {
     let index = 0
     return (
       <Switch>
-        {this.props.routes.map(route => (
+        {routes.map(route => (
           <Route exact {...route} key={index++} />
         ))}
       </Switch>
@@ -14,4 +15,4 @@ class Switches extends Component {
   }
 }
 
-export default Switches;
+export default Switches

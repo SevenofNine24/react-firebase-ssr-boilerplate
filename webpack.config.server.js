@@ -1,13 +1,18 @@
 const base = require("./webpack.config.js")
 const path = require("path")
+const webpack = require("webpack")
+const plugins = require("./plugins.config.js")
 
 module.exports = Object.assign({}, base, {
-  entry: "./app/ServerApp.js",
+  entry: "./server.js",
+  target: "node",
+  externals: {
+    "express": "commonjs express"
+  },
+  plugins: plugins,
   output: {
-    libraryTarget: "commonjs2",
-    libraryExport: "default",
     path: path.resolve(__dirname, "build"),
-    filename: "server.bundle.js"
+    filename: "server.js"
   },
   devtool: false
 })
