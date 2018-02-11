@@ -1,4 +1,4 @@
-
+const compression = require('compression')
 const PORT = process.env.PORT || 5000
 const express = require('express')
 const bundle = require('./build/server.bundle.js')
@@ -8,6 +8,7 @@ const template = require('./public/template')
 const path = require('path')
 
 express()
+  .use(compression())
   .use(express.static('build'))
   .get("**", (req, res) => {
     const html = reactDOM.renderToString(
