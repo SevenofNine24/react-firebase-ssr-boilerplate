@@ -4,11 +4,13 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
+    "start": "node server.js",
     "buildc": "NODE_ENV=production webpack",
     "builds": "NODE_ENV=production webpack --config webpack.config.server.js",
     "dev": "webpack-dev-server -d",
     "serve": "firebase serve --only functions,hosting",
-    "deploy": "git subtree push --prefix server heroku master"
+    "deploy": "git push heroku master",
+    "heroku-postbuild": "npm run builds"
   },
   "author": "",
   "license": "ISC",
