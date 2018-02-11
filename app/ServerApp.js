@@ -6,7 +6,7 @@ import Switches from './routes/Switches'
 class ServerApp extends Component {
   render() {
     return (
-      <StaticRouter>
+      <StaticRouter {...this.props}>
         <Switches routes={routes} />
       </StaticRouter>
     );

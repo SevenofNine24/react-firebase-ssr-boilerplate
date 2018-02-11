@@ -17,6 +17,11 @@ module.exports = {
     filename: "client.bundle.js",
     publicPath: "/assets/"
   },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "app")
+    }
+  },
   module: {
     rules: [
       {

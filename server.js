@@ -9,15 +9,27 @@ const path = require('path')
 
 express()
   .use(compression())
-  .use(express.static('build'))
+  .use("/", express.static("build"))
+  .use("/", express.static("public"))
   .get("**", (req, res) => {
+    let context = {}
     const html = reactDOM.renderToString(
-      react.createElement(bundle.ServerApp)
+      react.createElement(bundle.ServerApp, {
+        context: context, 
+        location: req.url
+      })
     )
-    res.send(template({
-      body: html,
-      initialState: JSON.stringify({})
-    }))
+    
+    if (context.url) {
+      res.redirect(context.url)
+    } else {
+      res
+      .status(context.status || 200)
+      .send(template({
+        body: html,
+        initialState: JSON.stringify({})
+      }))
+    }
   })
   .listen(PORT, () => {
     console.log("listening on port " + PORT)

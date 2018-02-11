@@ -7,7 +7,7 @@ class Switches extends Component {
     return (
       <Switch>
         {this.props.routes.map(route => (
-          <Route {...route} key={index++} />
+          <Route exact {...route} key={index++} />
         ))}
       </Switch>
     );
