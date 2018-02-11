@@ -13,6 +13,7 @@ class Home extends Component {
   render() {
     return (
       <div>
+        szevasz
         <LoadableTest />
       </div>
     );

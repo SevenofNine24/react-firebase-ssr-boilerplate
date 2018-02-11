@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, hydrate } from 'react-dom'
+import Loadable from 'react-loadable'
 import ClientApp from './app/ClientApp'
-import Loadable from 'react-loadable';
 
 if(module.hot) {
   render(<ClientApp />, document.getElementById("root"))

@@ -6,13 +6,14 @@ const plugins = require("./plugins.config.js")
 module.exports = Object.assign({}, base, {
   entry: "./server.js",
   target: "node",
-  externals: {
-    "express": "commonjs express"
-  },
-  plugins: plugins,
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "server.js"
   },
+  externals: {
+    "express": "commonjs express"
+  },
+  plugins: plugins.concat([
+  ]),
   devtool: false
 })
