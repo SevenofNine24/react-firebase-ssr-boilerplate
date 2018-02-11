@@ -1,7 +1,9 @@
 {
   "name": "app",
   "description": "",
-  "scripts": {},
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "express": "^4.16.2",
     "heroku": "^0.2.0",
